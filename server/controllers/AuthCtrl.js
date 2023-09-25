@@ -108,28 +108,29 @@ const authCtrl = {
   ////////
   login: async (req, res, next) => {
     try {
-      const user = await UserModel.findOne({ email: req.body.email });
+      res.status(400).json({ message: "User not found" });
+      // const user = await UserModel.findOne({ email: req.body.email });
 
-      if (user) {
-        if (
-          // Recréer un hash à partir du salt du user trouvé et du MDP reçu
-          SHA256(req.body.password + user.salt).toString(encBase64) ===
-          user.hash
-        ) {
-          res.status(200).json({
-            _id: user._id,
-            token: user.token,
-            account: user.account,
-            admin: user.admin,
-            ipAddress: user.ipAddress,
-            city: user.city
-          });
-        } else {
-          res.status(401).json({ error: "Unauthorized" });
-        }
-      } else {
-        res.status(400).json({ message: "User not found" });
-      }
+      // if (user) {
+      //   if (
+      //     // Recréer un hash à partir du salt du user trouvé et du MDP reçu
+      //     SHA256(req.body.password + user.salt).toString(encBase64) ===
+      //     user.hash
+      //   ) {
+      //     res.status(200).json({
+      //       _id: user._id,
+      //       token: user.token,
+      //       account: user.account,
+      //       admin: user.admin,
+      //       ipAddress: user.ipAddress,
+      //       city: user.city
+      //     });
+      //   } else {
+      //     res.status(401).json({ error: "Unauthorized" });
+      //   }
+      // } else {
+      //   res.status(400).json({ message: "User not found" });
+      // }
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ message: error.message });
