@@ -9,6 +9,6 @@ const fileUpload = require("express-fileupload");
 //   res.json("Bienvenue sur l'API");
 // });
 router.post("/signup", fileUpload(), authCtrl.signup);
-router.get("/login", authCtrl.login);
+router.post("/login", authCtrl.login);
 
 module.exports = router;
