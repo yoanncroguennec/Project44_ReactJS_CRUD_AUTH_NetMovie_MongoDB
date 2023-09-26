@@ -26,7 +26,7 @@ const authCtrl = {
           req.body.username &&
           req.body.firstName &&
           req.body.lastName
-          ) {
+        ) {
           // STEP 1 : encrypter le mot de passe
           // Générer le token et encrypter le mot de passe
           const token = uid2(64); // Génère Token qui fera 64 caractères de long
@@ -118,12 +118,8 @@ const authCtrl = {
         ) {
           res.status(200).json({
             _id: user._id,
-            email: user.email,
             token: user.token,
             account: user.account,
-            admin: user.admin,
-            ipAddress: user.ipAddress,
-            city: user.city,
           });
         } else {
           res.status(401).json({ error: "Unauthorized" });
