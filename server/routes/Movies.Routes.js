@@ -10,7 +10,10 @@ const movieCtrl = require("../controllers/MovieCtrl");
 router.route("/").get(movieCtrl.getAllMovies).post(movieCtrl.createMovie);
 router.route("/randomMovie").get(movieCtrl.getRandomMovie);
 router.route("/allMoviesByCriteria").get(movieCtrl.getAllMoviesByCriteria);
+router.route("/sortByMovieGenre").get(movieCtrl.getSortByMovieGenre);
+
 
 router.route("/:id").get(movieCtrl.getMovie);
+
 
 module.exports = router;

@@ -78,6 +78,19 @@ const movieCtrl = {
     }
   },
 
+  /////////////////////////////////
+  //// GET SORT BY MOVIE GENRE ////
+  /////////////////////////////////
+  getSortByMovieGenre: async (req, res, next) => {
+    try {
+      const movies = await MovieModel.find({ genre: req.body.genre });
+
+      res.status(200).json(movies);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  },
+
   //////////////////////////
   //// GET RANDOM MOVIE ////
   //////////////////////////
