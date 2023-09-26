@@ -83,7 +83,7 @@ const movieCtrl = {
   /////////////////////////////////
   getSortByMovieGenre: async (req, res, next) => {
     try {
-      const movies = await MovieModel.find({ genre: req.body.genre });
+      const movies = await MovieModel.find({ genre: req.query.genre });
 
       res.status(200).json(movies);
     } catch (error) {
