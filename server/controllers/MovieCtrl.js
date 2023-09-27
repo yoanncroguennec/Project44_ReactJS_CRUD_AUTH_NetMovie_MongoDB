@@ -111,8 +111,48 @@ const movieCtrl = {
   ///////////////////////
   getAllMovies: async (req, res, next) => {
     try {
-      const movies = await MovieModel.find({});
+      //! création d'un objet dans lequel on va stocker nos différents filtres
+      let filters = {};
 
+      if (req.query.name) {
+        filters.product_name = new RegExp(req.query.name, "i");
+      }
+
+      let sort = {};
+
+      if (req.query.sort === "nameMovie-desc") {
+        sort = { name: -1 };
+      } else if (req.query.sort === "nameMovie-asc") {
+        sort = { name: 1 };
+      }
+
+      let page;
+
+      if (Number(req.query.page) < 1) {
+        page = 1;
+      } else {
+        page = Number(req.query.page);
+      }
+
+      //   SKIP ET LIMIT
+      let limit = Number(req.query.limit);
+      // console.log(page, limit);
+      //.skip(10) // = sauter l'affichage des 10 premières annonces
+
+      const movies = await MovieModel.find(
+        filters
+        // { product_name: new RegExp("sac", "i") },
+        // { product_price: { $gte: 50, $lte: 150 } }
+      )
+        .sort(sort)
+        .limit(limit) // renvoyer y résultats
+        .skip((page - 1) * limit); // ignorer les x résultats
+      // .select("product_name product_price")
+      // .populate({
+      //   path: "owner",
+      //   select: "account",
+      // });
+      //.countDo
       const total = await MovieModel.countDocuments({});
 
       const response = {
