@@ -21,9 +21,6 @@ const movieCtrl = {
         movieLink,
         img,
         year,
-        categorie1,
-        categorie2,
-        categorie3,
         rating,
       } = req.body;
       // if (
@@ -51,11 +48,7 @@ const movieCtrl = {
         movieLink: movieLink,
         img: img,
         year: year,
-        genre: [
-          { Categorie1: categorie1 },
-          { Categorie2: categorie2 },
-          { Categorie3: categorie3 },
-        ],
+        genre: genre,
         rating: rating,
       });
 
