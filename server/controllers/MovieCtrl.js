@@ -21,6 +21,7 @@ const movieCtrl = {
         movieLink,
         img,
         year,
+        genre,
         rating,
       } = req.body;
       // if (
