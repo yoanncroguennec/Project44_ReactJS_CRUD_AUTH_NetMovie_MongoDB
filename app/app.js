@@ -28,7 +28,7 @@ app.use("/api/movies", require("../server/routes/Movies.Routes"));
 app.use("/api/auth", require("../server/routes/Auth.Routes"));
 app.use("/api/users", require("../server/routes/Users.Routes"));
 // Books
-app.use("/api/authors", require("../server/routes/books/Authors.Routes"));
+app.use("/api/categoryListMovie", require("../server/routes/CategoryMovie.Routes"));
 
 // ROUTES UNDEFINED
 app.all("*", (req, res) => {
