@@ -1,6 +1,4 @@
 const router = require("express").Router();
-// "express-fileupload" : Permet de récupérer les fichiers transmis par les clients
-// CONTROLLERS
 const categoryMovieCtrl = require("../controllers/CategoryMovieCtrl");
 
 // router.get("/", (req, res) => {
@@ -9,14 +7,9 @@ const categoryMovieCtrl = require("../controllers/CategoryMovieCtrl");
 
 router
   .route("/")
-  .get(categoryMovieCtrl.getAllCategoryListMovies)
-  .post(categoryMovieCtrl.createCategoryListMovies);
-// router.route("/randomMovie").get(categoryMovieCtrl.getRandomMovie);
-// router
-//   .route("/allMoviesByCriteria")
-//   .get(categoryMovieCtrl.getAllMoviesByCriteria);
-// router.route("/sortByMovieGenre").get(categoryMovieCtrl.getSortByMovieGenre);
+  .get(categoryMovieCtrl.getAllCategoriesListMovies)
+  .post(categoryMovieCtrl.createCategoriesListMovies);
 
-// router.route("/:id").get(categoryMovieCtrl.getMovie);
+router.route("/:id").delete(categoryMovieCtrl.deleteByID_CategoryListMovies);
 
 module.exports = router;
