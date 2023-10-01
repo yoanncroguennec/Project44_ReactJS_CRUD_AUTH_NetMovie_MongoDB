@@ -18,7 +18,7 @@ const categoryMovieCtrl = {
   deleteByID_CategoryListMovies: async (req, res, next) => {
     // if (req.user.isAdmin) {
     try {
-      await List.findByIdAndDelete(req.params.id);
+      await CategoryListMoviesModel.findByIdAndDelete(req.params.id);
       res.status(201).json("The list has been delete...");
     } catch (err) {
       res.status(500).json(err);
