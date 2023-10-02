@@ -14,6 +14,6 @@ router.route("/sortByMovieGenre").get(movieCtrl.getSortByMovieGenre);
 
 
 router.route("/:id").get(movieCtrl.getMovie);
-router.route("/:id").delete(userCtrl.deleteMovieByID);
+router.route("/:id").delete(movieCtrl.deleteMovieByID);
 
 module.exports = router;
