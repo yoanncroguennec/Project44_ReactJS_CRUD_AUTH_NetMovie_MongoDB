@@ -13,7 +13,7 @@ const movieSchema = new mongoose.Schema({
   movieLink: { type: String },
   img: { type: String, required: true },
   year: { type: Number },
-  genre: { type: [String], required: true },
+  genre: { type: Array },
   rating: { type: Number },
   date: Date,
 });
