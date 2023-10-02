@@ -3,6 +3,22 @@
 const AuthModel = require("../models/Auth");
 
 const userCtrl = {
+  ////////////////////////////////
+  // DELETE USER BY ID
+  ////////////////////////////////
+  deleteUserByID: async (req, res, next) => {
+    // if (req.user.isAdmin) {
+    try {
+      await AuthModel.findByIdAndDelete(req.params.id);
+      res.status(201).json("The list has been delete...");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+    // } else {
+    //   res.status(403).json("You are not allowed!");
+    // }
+  },
+
   ///////////////////
   //// GET MOVIE BY ID ////
   ///////////////////

@@ -101,6 +101,22 @@ const movieCtrl = {
     }
   },
 
+  ////////////////////////////////
+  // DELETE MOVIE BY ID
+  ////////////////////////////////
+  deleteMovieByID: async (req, res, next) => {
+    // if (req.user.isAdmin) {
+    try {
+      await MovieModel.findByIdAndDelete(req.params.id);
+      res.status(201).json("The list has been delete...");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+    // } else {
+    //   res.status(403).json("You are not allowed!");
+    // }
+  },
+
   ///////////////////
   //// GET MOVIE BY ID ////
   ///////////////////

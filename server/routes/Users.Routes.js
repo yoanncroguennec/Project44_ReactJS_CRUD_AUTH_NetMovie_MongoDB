@@ -9,5 +9,6 @@ const userCtrl = require("../controllers/UserCtrl");
 
 router.route("/").get(userCtrl.getAllUsers);
 router.route("/:id").get(userCtrl.getUser);
+router.route("/:id").delete(userCtrl.deleteUserByID);
 
 module.exports = router;
