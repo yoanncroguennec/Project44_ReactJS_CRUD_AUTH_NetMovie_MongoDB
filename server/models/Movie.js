@@ -15,7 +15,10 @@ const movieSchema = new mongoose.Schema({
   year: { type: Number },
   genre: { type: Array },
   rating: { type: Number },
-  date: Date,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("movie", movieSchema);

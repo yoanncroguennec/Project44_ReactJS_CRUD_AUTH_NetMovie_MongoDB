@@ -1,8 +1,15 @@
 // RegExp : Permet de chercher si certains éléments sont présent (Ex: Présence du "@" dans l'email) / Cours "Le Réacteur" à 10min de la vidéo "Cours sur les Filters", catégorie "Back", Jour 6
 // MODEL
 const MovieModel = require("../models/Movie");
+const CategoryListMoviesModel = require("../models/CategoryMovie");
 
 const movieCtrl = {
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+  //////////////////// PART CREATE /////////////////////
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+
   ///////////////////
   //// CREATE MOVIE ////
   ///////////////////
@@ -101,6 +108,12 @@ const movieCtrl = {
     }
   },
 
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+  /////////////// PART DELETE / GET ID /////////////////
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+
   ////////////////////////////////
   // DELETE MOVIE BY ID
   ////////////////////////////////
@@ -132,6 +145,33 @@ const movieCtrl = {
     }
   },
 
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+  //////// PART GET ALL WITH / WITHOUT CRITERIA ////////
+  //////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////
+
+  // ATTENTION !!!!!!!!!!!!!! A REVOIR TRIER PAR DATE DECROISSANT DONC AFFICHER LES 10 DERNIERES DONNES RENTRER DANS LA BD
+  ///////////////////
+  //// GET ////
+  ///////////////////
+  getDisplayLatestMoviesInBDD: async (req, res, next) => {
+    try {
+      const limit = 15;
+      const movies = await MovieModel.find().sort({ _id: -1 }).limit(limit);
+      const total = await MovieModel.countDocuments({});
+
+      const response = {
+        total,
+        movies,
+      };
+
+      res.status(200).json(response);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  },
+
   /////////////////////////////////
   //// GET SORT BY MOVIE GENRE ////
   /////////////////////////////////
@@ -139,7 +179,14 @@ const movieCtrl = {
     try {
       const movies = await MovieModel.find({ genre: req.query.genre });
 
-      res.status(200).json(movies);
+       const total = await MovieModel.countDocuments({});
+
+       const response = {
+         total,
+         movies,
+       };
+
+       res.status(200).json(response);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -154,7 +201,14 @@ const movieCtrl = {
 
       const randomMovie = movies[Math.floor(Math.random() * movies.length)];
       console.log("randomMovie :", randomMovie);
-      res.status(200).json(randomMovie);
+      const total = await MovieModel.countDocuments({});
+
+      const response = {
+        total,
+        randomMovie,
+      };
+      
+      res.status(200).json(response);
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
