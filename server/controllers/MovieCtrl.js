@@ -157,7 +157,7 @@ const movieCtrl = {
   ///////////////////
   getDisplayLatestMoviesInBDD: async (req, res, next) => {
     try {
-      const limit = 15;
+      const limit = 10;
       const movies = await MovieModel.find().sort({ _id: -1 }).limit(limit);
       const total = await MovieModel.countDocuments({});
 
