@@ -175,7 +175,7 @@ const movieCtrl = {
   /////////////////////////////////
   //// GET SORT BY MOVIE GENRE ////
   /////////////////////////////////
-  // http://localhost:8080/api/movies/sortByMovieGenre?genre=Com%C3%A9die
+  //// http://localhost:8080/api/movies/sortByMovieGenre?genre=Com%C3%A9die
   getSortByMovieGenre: async (req, res, next) => {
     try {
       const movies = await MovieModel.find({ genre: req.query.genre });
@@ -191,7 +191,7 @@ const movieCtrl = {
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
-  // },
+  },
 
   //////////////////////////
   //// GET RANDOM MOVIE ////
