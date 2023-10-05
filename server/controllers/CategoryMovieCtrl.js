@@ -13,7 +13,7 @@ const categoryMovieCtrl = {
   },
 
   ////////////////////////////////
-  // BELETE BY ID CATEGORY LIST MOVIES
+  // DELETE BY ID CATEGORY LIST MOVIES
   ////////////////////////////////
   deleteByID_CategoryListMovies: async (req, res, next) => {
     // if (req.user.isAdmin) {
