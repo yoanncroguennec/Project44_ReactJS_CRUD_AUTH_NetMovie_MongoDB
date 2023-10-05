@@ -175,53 +175,11 @@ const movieCtrl = {
   /////////////////////////////////
   //// GET SORT BY MOVIE GENRE ////
   /////////////////////////////////
-  //// http://localhost:8080/api/movies/sortByMovieGenre?genre=Com%C3%A9die
-
+  // http://localhost:8080/api/movies/sortByMovieGenre?genre=Com%C3%A9die
   getSortByMovieGenre: async (req, res, next) => {
     try {
-      //! création d'un objet dans lequel on va stocker nos différents filtres
-      let filters = {};
+      const movies = await MovieModel.find({ genre: req.query.genre });
 
-      if (req.query.name) {
-        filters.product_name = new RegExp(req.query.name, "i");
-      }
-
-      let sort = {};
-
-      if (req.query.sort === "nameMovie-desc") {
-        sort = { name: -1 };
-      } else if (req.query.sort === "nameMovie-asc") {
-        sort = { name: 1 };
-      }
-
-      let page;
-
-      if (Number(req.query.page) < 1) {
-        page = 1;
-      } else {
-        page = Number(req.query.page);
-      }
-
-      //   SKIP ET LIMIT
-      let limit = Number(req.query.limit);
-      // console.log(page, limit);
-      //.skip(10) // = sauter l'affichage des 10 premières annonces
-
-      const movies = await MovieModel.find(
-        filters,
-        { genre: req.query.genre }
-        // { product_name: new RegExp("sac", "i") },
-        // { product_price: { $gte: 50, $lte: 150 } }
-      )
-        .sort(sort)
-        .limit(limit) // renvoyer y résultats
-        .skip((page - 1) * limit); // ignorer les x résultats
-      // .select("product_name product_price")
-      // .populate({
-      //   path: "owner",
-      //   select: "account",
-      // });
-      //.countDo
       const total = await MovieModel.countDocuments({});
 
       const response = {
@@ -233,23 +191,6 @@ const movieCtrl = {
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
-  },
-
-  // getSortByMovieGenre: async (req, res, next) => {
-  //   try {
-  //     const movies = await MovieModel.find({ genre: req.query.genre });
-
-  //     const total = await MovieModel.countDocuments({});
-
-  //     const response = {
-  //       total,
-  //       movies,
-  //     };
-
-  //     res.status(200).json(response);
-  //   } catch (error) {
-  //     res.status(400).json({ message: error.message });
-  //   }
   // },
 
   //////////////////////////
