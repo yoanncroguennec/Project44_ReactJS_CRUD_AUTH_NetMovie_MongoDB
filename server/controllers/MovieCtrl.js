@@ -21,88 +21,32 @@ const movieCtrl = {
         actors,
         desc,
         trailer,
-        favorite,
-        watch,
         country,
         productionCompany,
         movieLink,
         img,
         year,
         genre,
-        rating,
       } = req.body;
-      // if (
-      //   // Les champs OBLIGATOIRE a remplir
-      //   req.body.name &&
-      //   req.body.img &&
-      //   req.body.genre
-      // ) {
-      // STEP 1 : Create New Movie
-
-      //   req.body.img &&
-      //   req.body.genre
-      // ) {
       // STEP 1 : Create New Movie
       const newMovie = new MovieModel({
-        name: name,
+        name: name, // "name: req.body.name" la même chose que "name: name"
         realisators: realisators,
         actors: actors,
         desc: desc,
         trailer: trailer,
-        favorite: favorite,
-        watch: watch,
         country: country,
         productionCompany: productionCompany,
         movieLink: movieLink,
         img: img,
         year: year,
         genre: genre,
-        rating: rating,
       });
-
-      // Les champs que l'user à remplit (pas forcément obligatoire)
-      // name: req.body.name,
-      // realisators: req.body.realisators,
-      // actors: req.body.actors,
-      // desc: req.body.desc,
-      // trailer: req.body.trailer,
-      // favorite: req.body.favorite,
-      // watch: req.body.watch,
-      // country: req.body.country,
-      // productionCompany: req.body.productionCompany,
-      // movieLink: req.body.movieLink,
-      // img: req.body.img,
-      // year: req.body.year,
-      // genre: req.body.genre,
-      // rating: req.body.rating,
-      // });
 
       // STEP 2 : sauvegarder ce nouvel user dans la BDD
       await newMovie.save();
       // ATTENTION !! Affiche le résultat sur Postman que quand on lance le server depuis l'api direct et non par la dépendance concurrently"" de Front-end (client)
       res.status(201).json(newMovie);
-      // res.status(201).json({
-      //   name: newMovie.name,
-      //   realisators: newMovie.realisators,
-      //   actors: newMovie.actors,
-      //   desc: newMovie.desc,
-      //   trailer: newMovie.trailer,
-      //   favorite: newMovie.favorite,
-      //   watch: newMovie.watch,
-      //   country: newMovie.country,
-      //   productionCompany: newMovie.productionCompany,
-      //   movieLink: newMovie.movieLink,
-      //   img: newMovie.img,
-      //   year: newMovie.year,
-      //   genre: newMovie.genre,
-      //   rating: newMovie.rating,
-      // });
-      // return res.status(400).json(res);
-      // res.json(res);
-      // } else {
-      //   // l'utilisateur n'a pas envoyé les informations requises ?
-      //   res.status(400).json({ message: "Paramètres manquants" });
-      // }
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
@@ -171,6 +115,12 @@ const movieCtrl = {
       res.status(400).json({ message: error.message });
     }
   },
+
+  //////////// A REVOIR
+  /////////////////////////////////
+  //// GET MONTHLY COUNT MOVIE  ////
+  /////////////////////////////////
+  getMonthlyCountMovies: async (req, res, next) => {},
 
   /////////////////////////////////
   //// GET SORT BY MOVIE GENRE ////

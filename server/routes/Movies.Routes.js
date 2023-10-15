@@ -12,6 +12,7 @@ router.route("/randomMovie").get(movieCtrl.getRandomMovie);
 router.route("/allMoviesByCriteria").get(movieCtrl.getAllMoviesByCriteria);
 router.route("/sortByMovieGenre").get(movieCtrl.getSortByMovieGenre);
 
+router.route("/getMonthlyCountMovies").get(movieCtrl.getMonthlyCountMovies);
 router
   .route("/displayLatestMoviesInBDD")
   .get(movieCtrl.getDisplayLatestMoviesInBDD);
