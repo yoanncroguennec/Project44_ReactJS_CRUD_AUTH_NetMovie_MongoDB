@@ -52,6 +52,34 @@ const movieCtrl = {
     }
   },
 
+  // UPDATE
+  update_MovieViaParamsId: async (req, res, next) => {
+    try {
+      const UpdateMovie = await MovieModel.findByIdAndUpdate(
+        req.params.id,
+        {
+          name: req.body.name,
+          realisators: req.body.realisators,
+          actors: req.body.actors,
+          desc: req.body.desc,
+          trailer: req.body.trailer,
+          country: req.body.country,
+          productionCompany: req.body.productionCompany,
+          movieLink: req.body.movieLink,
+          img: req.body.img,
+          year: req.body.year,
+          genre: req.body.genre,
+        },
+        { new: true }
+      );
+
+      console.log(UpdateMovie);
+      res.json({ message: "Movie success updated" });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
   //////////////////////////////////////////////////////
   //////////////////////////////////////////////////////
   /////////////// PART DELETE / GET ID /////////////////

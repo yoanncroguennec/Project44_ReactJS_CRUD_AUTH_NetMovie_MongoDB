@@ -12,6 +12,28 @@ const categoryMovieCtrl = {
     }
   },
 
+  // UPDATE
+  update_CategoryListMoviesViaParamsId: async (req, res, next) => {
+    try {
+      const CategoryListMoviesUpdate =
+        await CategoryListMoviesModel.findByIdAndUpdate(
+          req.params.id,
+          {
+            title: req.body.title,
+            type: req.body.type,
+            genre: req.body.genre,
+            content: req.body.content,
+          },
+          { new: true }
+        );
+
+      console.log(CategoryListMoviesUpdate);
+      res.json({ message: "catégory of movies success updated" });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+
   ////////////////////////////////
   // DELETE BY ID CATEGORY LIST MOVIES
   ////////////////////////////////
